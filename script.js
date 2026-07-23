@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  const githubHandle = 'USERNAME';
+  const githubHandle = 'tmdwo1016';
   const githubUsernameEl = document.getElementById('github-username');
   const githubReposEl = document.getElementById('github-repos');
   const githubFollowersEl = document.getElementById('github-followers');
