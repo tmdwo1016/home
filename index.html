@@ -2,8 +2,7 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>풀스택 개발자 포트폴리오</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />    <meta name="description" content="풀스택 개발자 포트폴리오. GitHub 통합, AI 시각화, 인스타 감성 포스트 스타일을 담은 개인 웹사이트입니다." />    <title>풀스택 개발자 포트폴리오</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -36,12 +35,32 @@
                   <h1>홍길동</h1>
                   <p class="handle">@fullstack.ai</p>
                 </div>
-                <button class="button button-secondary">Follow</button>
+                <a class="button button-secondary" id="github-follow-btn" href="https://github.com/USERNAME" target="_blank" rel="noreferrer noopener">GitHub Follow</a>
               </div>
               <div class="profile-stats">
                 <span><strong>18</strong> posts</span>
                 <span><strong>6.8k</strong> followers</span>
                 <span><strong>290</strong> following</span>
+              </div>
+              <div class="github-card">
+                <h4>GitHub 통합 정보</h4>
+                <div class="github-row">
+                  <strong>계정</strong>
+                  <span id="github-username">@USERNAME</span>
+                </div>
+                <div class="github-row">
+                  <strong>공개 저장소</strong>
+                  <span id="github-repos">--</span>
+                </div>
+                <div class="github-row">
+                  <strong>팔로워</strong>
+                  <span id="github-followers">--</span>
+                </div>
+                <div class="github-row">
+                  <strong>최신 저장소</strong>
+                  <span id="github-latest">Loading…</span>
+                </div>
+                <a id="github-link" class="github-link" href="https://github.com/USERNAME" target="_blank" rel="noreferrer noopener">github.com/USERNAME</a>
               </div>
               <p class="profile-bio">
                 AI 기반 풀스택 개발자 | 학교 프로젝트 & 실전 배포 경험 |
@@ -261,7 +280,7 @@
           <div class="contact-cards">
             <div class="contact-card">
               <h3>GitHub</h3>
-              <a href="https://github.com/USERNAME" target="_blank" rel="noreferrer noopener">github.com/USERNAME</a>
+              <a id="github-link-contact" href="https://github.com/USERNAME" target="_blank" rel="noreferrer noopener">github.com/USERNAME</a>
             </div>
             <div class="contact-card">
               <h3>이메일</h3>
