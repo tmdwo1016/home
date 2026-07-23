@@ -54,7 +54,51 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  const githubHandle = 'USERNAME';
+  const githubUsernameEl = document.getElementById('github-username');
+  const githubReposEl = document.getElementById('github-repos');
+  const githubFollowersEl = document.getElementById('github-followers');
+  const githubLatestEl = document.getElementById('github-latest');
+  const githubLink = document.getElementById('github-link');
+  const githubLinkContact = document.getElementById('github-link-contact');
+  const githubFollowBtn = document.getElementById('github-follow-btn');
+
+  const setGithubFallback = () => {
+    if (githubUsernameEl) githubUsernameEl.textContent = '@USERNAME';
+    if (githubReposEl) githubReposEl.textContent = '--';
+    if (githubFollowersEl) githubFollowersEl.textContent = '--';
+    if (githubLatestEl) githubLatestEl.textContent = 'Replace with your GitHub username';
+  };
+
+  const loadGithubProfile = async () => {
+    if (!githubHandle || githubHandle === 'USERNAME') {
+      setGithubFallback();
+      return;
+    }
+
+    try {
+      const profileRes = await fetch(`https://api.github.com/users/${githubHandle}`);
+      if (!profileRes.ok) throw new Error('GitHub profile not found');
+      const profile = await profileRes.json();
+      const reposRes = await fetch(`https://api.github.com/users/${githubHandle}/repos?sort=updated&per_page=5`);
+      const repos = reposRes.ok ? await reposRes.json() : [];
+      const latestRepo = Array.isArray(repos) && repos.length ? repos[0].name : 'No repo yet';
+
+      if (githubUsernameEl) githubUsernameEl.textContent = `@${profile.login}`;
+      if (githubReposEl) githubReposEl.textContent = profile.public_repos;
+      if (githubFollowersEl) githubFollowersEl.textContent = profile.followers;
+      if (githubLatestEl) githubLatestEl.textContent = latestRepo;
+      if (githubLink) githubLink.href = profile.html_url;
+      if (githubLinkContact) githubLinkContact.href = profile.html_url;
+      if (githubFollowBtn) githubFollowBtn.href = `${profile.html_url}?tab=followers`;
+    } catch (error) {
+      console.warn('GitHub API 오류:', error);
+      if (githubLatestEl) githubLatestEl.textContent = 'API 로드 실패';
+    }
+  };
+
   revealOnScroll();
   typeNextChar();
+  loadGithubProfile();
   window.addEventListener('scroll', revealOnScroll);
 });
